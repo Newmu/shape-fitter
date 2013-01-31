@@ -43,7 +43,7 @@ $(window).load(function(){
 		ePixs = eImgData.data;
 		setInterval(render,16);
 	};
-	img.src = 'me.jpg';
+	img.src = 'monaLisa.jpg';
 });
 
 function render(){
