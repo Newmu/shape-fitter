@@ -43,7 +43,7 @@ $(window).load(function(){
 		ePixs = eImgData.data;
 		setInterval(render,16);
 	};
-	img.src = 'monaLisa.jpg';
+	img.src = 'me.jpg';
 });
 
 function render(){
@@ -61,78 +61,22 @@ function render(){
 	loop++;
 }
 
-// function init(amnt){
-// 	shapes = [];
-// 	diagLen = Math.sqrt(Math.pow(width,2)+Math.pow(height,2))/2;
-// 	for (var i = 0; i < amnt; i++){
-// 		var shape = {};
-// 		var x1 = randInt(0,width);
-// 		var y1 = randInt(0,height);
-// 		var x2 = randInt(0,width);
-// 		var y2 = randInt(0,height);
-// 		var x3 = randInt(0,width);
-// 		var y3 = randInt(0,height);
-// 		var r = randInt(0,255).toString();
-// 		var g = randInt(0,255).toString();
-// 		var b = randInt(0,255).toString();
-// 		var a = (Math.random()/3).toString();
-// 		shapes.push([x1,y1,x2,y2,x3,y3,r,g,b,a]);
-// 	}
-// }
-
-// function draw(ctx){
-// 	ctx.clearRect(0,0,width,height);
-// 	for (var c = 0; c < shapes.length; c++){
-// 		var shape = shapes[c];
-// 		var x1 = shape[0];
-// 		var y1 = shape[1];
-// 		var x2 = shape[2];
-// 		var y2 = shape[3];
-// 		var x3 = shape[4];
-// 		var y3 = shape[5];
-// 		var r = shape[6];
-// 		var g = shape[7];
-// 		var b = shape[8];
-// 		var a = shape[9]
-// 		ctx.beginPath();
-// 		ctx.moveTo(x1,y1);
-// 		ctx.lineTo(x2,y2);
-// 		ctx.lineTo(x3,y3);
-// 		ctx.fillStyle = 'rgba('+r+','+g+','+b+','+a+')';
-// 		ctx.fill();
-// 	}
-// }
-
-// function mutate(){
-// 	var c = randInt(0,shapes.length-1);
-// 	var prop = randInt(0,9);
-// 	if (prop == 0 || prop == 2 || prop == 4){
-// 		shapes[c][prop] = randInt(0,width);
-// 	}
-// 	else if (prop == 1 || prop == 3 || prop == 5){
-// 		shapes[c][prop] = randInt(0,height);
-// 	}
-// 	else if (prop >= 6 && prop <= 8){
-// 		shapes[c][prop] = randInt(0,255).toString();
-// 	}
-// 	else{
-// 		shapes[c][prop] = (Math.random()/3).toString();
-// 	}
-// }
-
 function init(amnt){
 	shapes = [];
 	diagLen = Math.sqrt(Math.pow(width,2)+Math.pow(height,2))/2;
 	for (var i = 0; i < amnt; i++){
 		var shape = {};
-		shape.x = randInt(0,width);
-		shape.y = randInt(0,height);
-		shape.radius = randInt(0,diagLen/3);
-		shape.r = randInt(0,255).toString();
-		shape.g = randInt(0,255).toString();
-		shape.b = randInt(0,255).toString();
-		shape.a = (Math.random()/2).toString();
-		shapes.push(shape);
+		var x1 = randInt(0,width);
+		var y1 = randInt(0,height);
+		var x2 = randInt(0,width);
+		var y2 = randInt(0,height);
+		var x3 = randInt(0,width);
+		var y3 = randInt(0,height);
+		var r = randInt(0,255).toString();
+		var g = randInt(0,255).toString();
+		var b = randInt(0,255).toString();
+		var a = (Math.random()/3).toString();
+		shapes.push([x1,y1,x2,y2,x3,y3,r,g,b,a]);
 	}
 }
 
@@ -140,34 +84,90 @@ function draw(ctx){
 	ctx.clearRect(0,0,width,height);
 	for (var c = 0; c < shapes.length; c++){
 		var shape = shapes[c];
+		var x1 = shape[0];
+		var y1 = shape[1];
+		var x2 = shape[2];
+		var y2 = shape[3];
+		var x3 = shape[4];
+		var y3 = shape[5];
+		var r = shape[6];
+		var g = shape[7];
+		var b = shape[8];
+		var a = shape[9]
 		ctx.beginPath();
-		ctx.arc(shape.x,shape.y,shape.radius,0,Math.PI*2,false);
-		ctx.closePath();
-		ctx.fillStyle = 'rgba('+shape.r+','+shape.g+','+shape.b+','+shape.a+')';
+		ctx.moveTo(x1,y1);
+		ctx.lineTo(x2,y2);
+		ctx.lineTo(x3,y3);
+		ctx.fillStyle = 'rgba('+r+','+g+','+b+','+a+')';
 		ctx.fill();
 	}
 }
 
 function mutate(){
 	var c = randInt(0,shapes.length-1);
-	var propNames = Object.keys(shapes[0]);
-	var prop = propNames[randInt(0,propNames.length-1)];
-	if (prop == 'x'){
+	var prop = randInt(0,9);
+	if (prop == 0 || prop == 2 || prop == 4){
 		shapes[c][prop] = randInt(0,width);
 	}
-	else if (prop == 'y'){
+	else if (prop == 1 || prop == 3 || prop == 5){
 		shapes[c][prop] = randInt(0,height);
 	}
-	else if (prop == 'radius'){
-		shapes[c][prop] = randInt(0,diagLen/3);
-	}
-	else if (prop == 'r' || prop == 'g' || prop == 'b'){
+	else if (prop >= 6 && prop <= 8){
 		shapes[c][prop] = randInt(0,255).toString();
 	}
 	else{
-		shapes[c][prop] = (Math.random()/2).toString();
+		shapes[c][prop] = (Math.random()/3).toString();
 	}
 }
+
+// function init(amnt){
+// 	shapes = [];
+// 	diagLen = Math.sqrt(Math.pow(width,2)+Math.pow(height,2))/2;
+// 	for (var i = 0; i < amnt; i++){
+// 		var shape = {};
+// 		shape.x = randInt(0,width);
+// 		shape.y = randInt(0,height);
+// 		shape.radius = randInt(0,diagLen/3);
+// 		shape.r = randInt(0,255).toString();
+// 		shape.g = randInt(0,255).toString();
+// 		shape.b = randInt(0,255).toString();
+// 		shape.a = (Math.random()/2).toString();
+// 		shapes.push(shape);
+// 	}
+// }
+
+// function draw(ctx){
+// 	ctx.clearRect(0,0,width,height);
+// 	for (var c = 0; c < shapes.length; c++){
+// 		var shape = shapes[c];
+// 		ctx.beginPath();
+// 		ctx.arc(shape.x,shape.y,shape.radius,0,Math.PI*2,false);
+// 		ctx.closePath();
+// 		ctx.fillStyle = 'rgba('+shape.r+','+shape.g+','+shape.b+','+shape.a+')';
+// 		ctx.fill();
+// 	}
+// }
+
+// function mutate(){
+// 	var c = randInt(0,shapes.length-1);
+// 	var propNames = Object.keys(shapes[0]);
+// 	var prop = propNames[randInt(0,propNames.length-1)];
+// 	if (prop == 'x'){
+// 		shapes[c][prop] = randInt(0,width);
+// 	}
+// 	else if (prop == 'y'){
+// 		shapes[c][prop] = randInt(0,height);
+// 	}
+// 	else if (prop == 'radius'){
+// 		shapes[c][prop] = randInt(0,diagLen/3);
+// 	}
+// 	else if (prop == 'r' || prop == 'g' || prop == 'b'){
+// 		shapes[c][prop] = randInt(0,255).toString();
+// 	}
+// 	else{
+// 		shapes[c][prop] = (Math.random()/2).toString();
+// 	}
+// }
 
 function getError(oCtx,cCtx){
 	var cPixs = cCtx.getImageData(0,0, width, height).data;
@@ -177,13 +177,13 @@ function getError(oCtx,cCtx){
 		err += Math.abs(oPixs[p*4]-cPixs[p*4]); // R error
 		err += Math.abs(oPixs[p*4+1]-cPixs[p*4+1]); // G error
 		err += Math.abs(oPixs[p*4+2]-cPixs[p*4+2]); // B error
-		ePixs[p*4] = err;
-		ePixs[p*4+1] = err;
-		ePixs[p*4+2] = err;
-		ePixs[p*4+3] = 255;
+		// ePixs[p*4] = err;
+		// ePixs[p*4+1] = err;
+		// ePixs[p*4+2] = err;
+		// ePixs[p*4+3] = 255;
 		errSum += err;
 	}
-	eCtx.putImageData(eImgData,0,0);
+	// eCtx.putImageData(eImgData,0,0);
 	return errSum;
 }
 
